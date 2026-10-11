@@ -103,16 +103,29 @@ public class FoodTrayStackApp {
         }
     }
     
-    //Read a date in yyyy-MM-dd format 
+    //Read and validate best-before date in yyyy-MM-dd format 
     private static LocalDate readDate(Scanner scanner){
+        LocalDate today = LocalDate.now();
+        LocalDate maxDate = today.plusWeeks(2);
+        
         while(true){
             System.out.println("Enter best-before date (yyyy-MM-dd): ");
             
             String input = scanner.nextLine().trim();
             try {
-                return LocalDate.parse(input);
+                LocalDate date = LocalDate.parse(input);
+                if (date.isBefore(today)) {
+                    System.out.println("Invalid date. The data cannot be in the past.");
+                    continue;
+                }
+                if (date.isAfter(maxDate)){
+                    System.out.println("Invalid date. The maximum is two weeks from today.");
+                    continue;
+                }
+                return date;
+                
             } catch (Exception e) {
-                System.out.println("Invalis date. Example: 2026-10-11");
+                System.out.println("Invalid date. Example: " + maxDate.toString());
             }
         }
         
