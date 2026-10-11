@@ -32,7 +32,7 @@ public class FoodStack implements StackADT<Food> {
             return;
         }
         items[++top] = item;
-        System.out.println(item.getName() + " pushed to stack.\n");
+        System.out.println("\n" + item.getName() + " pushed to stack.\n");
     }
 
     // Pop element

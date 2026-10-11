@@ -83,6 +83,11 @@ public class FoodTrayStackApp {
             
             try {
                 double weight = Double.parseDouble(input);
+                if (weight > Double.MAX_VALUE){
+                    System.out.println("\nThe number entered is greater than the supported value.");
+                    System.out.println("Try a value lower than " + Double.MAX_VALUE + ".\n");
+                    continue;
+                }
                 if(weight > 0){
                     return weight;
                 }
