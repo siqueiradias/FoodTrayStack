@@ -169,11 +169,7 @@ public class FoodTrayStackApp {
         System.out.print("Enter food name to search: ");
         String name = scanner.nextLine();
         
-        Food foundFood = foodStack.search(name);
-        
-        if (foundFood != null) {
-            System.out.println("\nFood found: " + foundFood + "\n");
-        }
+        foodStack.search(name);
     }
 }
 

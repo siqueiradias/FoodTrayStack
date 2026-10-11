@@ -92,20 +92,27 @@ public class FoodStack implements StackADT<Food> {
         return top + 1;
     }
     
-    public Food search(String name){
+    public void search(String name){
         if (name == null || name.trim().isEmpty()){
-            System.out.println("Please enter a valid food name.");
-            return null;
+            System.out.println("\nPlease enter a valid food name.\n");
+            return;
         }
         String searchName = name.trim();
+        boolean found = false;
         
         for (int i = top; i >= 0; i--) {
             if (items[i].getName().equalsIgnoreCase(searchName)){
-                return items[i];
+                if (!found){
+                    System.out.println("\nMatching food items:");
+                }
+                System.out.println(items[i]);
+                found = true;
             }
         }
-        System.out.println("Food not found.");
-        return null;
+        System.out.println("");
+        if (!found) {
+            System.out.println("Food not found.\n");   
+        }
     }
 
 }
