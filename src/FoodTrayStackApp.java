@@ -56,7 +56,7 @@ public class FoodTrayStackApp {
                     running = false;
                     System.out.println("\nExiting application.\n");
                 }
-                default -> System.out.println("\nInvalid option. Please choose from 1 to 7.");
+                default -> System.out.println("\nInvalid option. Please choose from 1 to 7.\n");
             }
         }
         scanner.close();
@@ -70,25 +70,25 @@ public class FoodTrayStackApp {
             try {
                 return Integer.parseInt(input);
             } catch (NumberFormatException e) {
-                System.out.print("\nInvalid input. Please enter a number valid: ");
+                System.out.print("\nInvalid input. Please enter a valid number: ");
             }
         }
     }
     
-    //Read and validate a positive weight
+    //Read and validate an weight
     private static double readPositiveDouble(Scanner scanner){
         while (true) {
             System.out.print("Enter weight in grams: ");
             String input = scanner.nextLine().trim();
             
             try {
-                double number = Double.parseDouble(input);
-                if(number > 0){
-                    return number;
+                double weight = Double.parseDouble(input);
+                if(weight > 0){
+                    return weight;
                 }
-                System.out.println("Input must be a positive number\n");
+                System.out.println("\nPlease enter a number greater than zero.");
             } catch (NumberFormatException e) {
-                System.out.print("\nInvalid input. Please enter a number valid: ");
+                System.out.println("\nInvalid input. Please enter a valid number.");
             }
         }
     }
@@ -115,7 +115,7 @@ public class FoodTrayStackApp {
                 return date;
                 
             } catch (Exception e) {
-                System.out.println("Invalid date. Example: " + maxDate.toString());
+                System.out.println("\nInvalid date. Example: " + maxDate.toString() + "\n");
             }
         }
         

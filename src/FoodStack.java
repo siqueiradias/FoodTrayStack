@@ -39,7 +39,7 @@ public class FoodStack implements StackADT<Food> {
     @Override
     public Food pop() {
         if (isEmpty()) {
-            System.out.println("\nCannot remove food beacuse the stack is empty\n");
+            System.out.println("\nCannot remove food because the stack is empty\n");
             return null;
         }
         Food removedFood = items[top];
