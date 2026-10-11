@@ -36,37 +36,27 @@ public class FoodTrayStackApp {
             int option = readInt(scanner);
             
             switch (option) {
-                case 1:
-                    addFood(scanner, foodStack);
-                    break;
-                case 2:
+                case 1 -> addFood(scanner, foodStack);
+                case 2 -> {
                     Food removedFood = foodStack.pop();
                     if (removedFood != null) {
-                        System.out.println("Removed food " + removedFood.getName());
-                        
+                        System.out.println("\nRemoved food " + removedFood.getName() + "\n");         
                     }
-                    break;
-                case 3:
+                }
+                case 3 -> {
                     Food topFood = foodStack.peek();
                     if (topFood != null) {
-                        System.out.println("Top food: " + topFood);
+                        System.out.println("\nTop food: " + topFood + "\n");
                     }
-                    break;
-                case 4:
-                    foodStack.display();
-                    break;
-                case 5:
-                    searchFood(scanner, foodStack);
-                    break;
-                case 6:
-                    System.out.println("Stored items: " + foodStack.size() + "/8");
-                    break;
-                case 7:
+                }
+                case 4 -> foodStack.display();
+                case 5 -> searchFood(scanner, foodStack);
+                case 6 -> System.out.println("\nStored items: " + foodStack.size() + "/8\n");
+                case 7 -> {
                     running = false;
-                    System.out.println("Exiting application.");
-                    break;
-                default:
-                    System.out.println("\nInvalid option. Please choose from 1 to 7.");
+                    System.out.println("\nExiting application.\n");
+                }
+                default -> System.out.println("\nInvalid option. Please choose from 1 to 7.");
             }
         }
         scanner.close();
@@ -88,7 +78,7 @@ public class FoodTrayStackApp {
     //Read and validate a positive weight
     private static double readPositiveDouble(Scanner scanner){
         while (true) {
-            System.out.println("Enter weight in grams: ");
+            System.out.print("Enter weight in grams: ");
             String input = scanner.nextLine().trim();
             
             try {
@@ -96,9 +86,9 @@ public class FoodTrayStackApp {
                 if(number > 0){
                     return number;
                 }
-                System.out.println("Input must be a positive number");
+                System.out.println("Input must be a positive number\n");
             } catch (NumberFormatException e) {
-                System.out.println("\nInvalid input. Please enter a number valid: ");
+                System.out.print("\nInvalid input. Please enter a number valid: ");
             }
         }
     }
@@ -109,17 +99,17 @@ public class FoodTrayStackApp {
         LocalDate maxDate = today.plusWeeks(2);
         
         while(true){
-            System.out.println("Enter best-before date (yyyy-MM-dd): ");
+            System.out.print("Enter best-before date (yyyy-MM-dd): ");
             
             String input = scanner.nextLine().trim();
             try {
                 LocalDate date = LocalDate.parse(input);
                 if (date.isBefore(today)) {
-                    System.out.println("Invalid date. The data cannot be in the past.");
+                    System.out.println("\nInvalid date. The data cannot be in the past.\n");
                     continue;
                 }
                 if (date.isAfter(maxDate)){
-                    System.out.println("Invalid date. The maximum is two weeks from today.");
+                    System.out.println("\nInvalid date. The maximum is two weeks from today.\n");
                     continue;
                 }
                 return date;
@@ -133,25 +123,26 @@ public class FoodTrayStackApp {
     
     //Add a new food item
     private static void addFood(Scanner scanner, FoodStack foodStack){
-        System.out.println("\nSelect food type:");
-        System.out.println("1. Burger");
-        System.out.println("2. Pizza");
-        System.out.println("3. Fries");
-        System.out.println("4. Sandwich");
-        System.out.println("5. Hotdog");
+        System.out.println("\n+ ========== Select food type ========== +");
+        System.out.println(  "+ > 1. Burger                            +");
+        System.out.println(  "+ > 2. Pizza                             +");
+        System.out.println(  "+ > 3. Fries                             +");
+        System.out.println(  "+ > 4. Sandwich                          +");
+        System.out.println(  "+ > 5. Hotdog                            +");
+        System.out.println(  "+ ====================================== +");
         
-        System.out.println("Choose food type: ");
+        System.out.print("\nChoose food type: ");
         int type = readInt(scanner);
         
         if (type < 1 || type > 5) {
             System.out.println("Invalid food type.");
             return;
         }
-        System.out.println("Enter food name: ");
+        System.out.print("Enter food name: ");
         String name = scanner.nextLine().trim();
         
         while (name.isEmpty()) {            
-            System.out.println("Food name cannot be empty. Try again: ");
+            System.out.print("\nFood name cannot be empty. Try again: ");
             name = scanner.nextLine().trim();
         }
         
@@ -175,13 +166,13 @@ public class FoodTrayStackApp {
     
     //Search for food by name
     private static void searchFood(Scanner scanner, FoodStack foodStack){
-        System.out.println("Enter food name to search: ");
+        System.out.print("Enter food name to search: ");
         String name = scanner.nextLine();
         
         Food foundFood = foodStack.search(name);
         
         if (foundFood != null) {
-            System.out.println("Food found: " + foundFood);
+            System.out.println("\nFood found: " + foundFood + "\n");
         }
     }
 }

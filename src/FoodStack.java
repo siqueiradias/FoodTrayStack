@@ -24,22 +24,22 @@ public class FoodStack implements StackADT<Food> {
     @Override
     public void push(Food item) {
         if (item == null) {
-            System.out.println("Food cannot be null");
+            System.out.println("\nFood cannot be null\n");
             return;
         }
         if (isFull()) {
-            System.out.println("Stack Overflow");
+            System.out.println("\nStack Overflow\n");
             return;
         }
         items[++top] = item;
-        System.out.println(item.getName() + " pushed to stack.");
+        System.out.println(item.getName() + " pushed to stack.\n");
     }
 
     // Pop element
     @Override
     public Food pop() {
         if (isEmpty()) {
-            System.out.println("Cannot remove food beacuse the stack is empty");
+            System.out.println("\nCannot remove food beacuse the stack is empty\n");
             return null;
         }
         Food removedFood = items[top];
@@ -53,7 +53,7 @@ public class FoodStack implements StackADT<Food> {
     @Override
     public Food peek() {
         if (isEmpty()) {
-            System.out.println("Cannot peek because the stack is empty.");
+            System.out.println("\nCannot peek because the stack is empty.\n");
             return null;
         }
         return items[top];
@@ -75,15 +75,16 @@ public class FoodStack implements StackADT<Food> {
     @Override
     public void display() {
         if (isEmpty()) {
-            System.out.println("The food stack is empty.");
+            System.out.println("\nThe food stack is empty.\n");
             return;
         }
 
-        System.out.println("Food stack (TOP to BOTTOM):");
+        System.out.println("\nFood stack (TOP to BOTTOM):");
 
         for (int i = top; i >= 0; i--) {
             System.out.println(items[i]);
         }
+        System.out.println("");
     }
     
     //Get number of elements in the stack
