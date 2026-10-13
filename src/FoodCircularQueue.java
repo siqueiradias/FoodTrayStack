@@ -9,7 +9,7 @@
  */
 public class FoodCircularQueue implements QueueADT<Food> {
 
-    private static final int CAPACIRY = 8;
+    private static final int CAPACITY = 8;
 
     private Food[] items;
     private int front;
@@ -17,7 +17,7 @@ public class FoodCircularQueue implements QueueADT<Food> {
     private int size;
 
     public FoodCircularQueue() {
-        items = new Food[CAPACIRY];
+        items = new Food[CAPACITY];
         front = 0;
         rear = -1;
         size = 0;
@@ -35,10 +35,10 @@ public class FoodCircularQueue implements QueueADT<Food> {
         }
         //capacity=8
         //rear (7+1)%8===>0
-        rear = (rear + 1) % CAPACIRY;
+        rear = (rear + 1) % CAPACITY;
         items[rear] = item;
         size++;
-        System.out.println("\n" + item.getName() + "added to queue.\n");
+        System.out.println("\n" + item.getName() + " added to queue.\n");
     }
 
     @Override
@@ -50,7 +50,7 @@ public class FoodCircularQueue implements QueueADT<Food> {
         //actual delete
         Food removedFood = items[front];
         items[front] = null;
-        front = (front + 1) % CAPACIRY;
+        front = (front + 1) % CAPACITY;
         size--;
         return removedFood;
     }
@@ -71,7 +71,7 @@ public class FoodCircularQueue implements QueueADT<Food> {
 
     @Override
     public boolean isFull() {
-        return size == CAPACIRY;
+        return size == CAPACITY;
     }
 
     @Override
@@ -82,14 +82,42 @@ public class FoodCircularQueue implements QueueADT<Food> {
         }
 
         System.out.println("\nFood queue (FRONT to REAR):");
-        for (int i = front; i <= rear; i++) {
-            int index = (front + i) % CAPACIRY;
+        for (int i = 0; i < size; i++) {
+            int index = (front + i) % CAPACITY;
             System.out.println(items[index]);
         }
         System.out.println();
     }
-    
-    public int size(){
+
+    @Override
+    public int size() {
         return size;
+    }
+
+    public void search(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            System.out.println("\nPlease enter a valid food name.\n");
+            return;
+        }
+
+        String searchName = name.trim();
+        boolean found = false;
+
+        for (int i = 0; i < size; i++) {
+            int index = (front + i) % CAPACITY;
+            if (items[index].getName().equalsIgnoreCase(searchName)) {
+                if (!found) {
+                    System.out.println("\nMatching food items:");
+                }
+                System.out.println(items[index]);
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("\nFood not found.\n");
+        } else {
+            System.out.println();
+        }
     }
 }

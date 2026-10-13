@@ -20,5 +20,7 @@ public interface QueueADT<T> {
     boolean isFull();
 
     void display();
+    
+    int size();
 
 }
