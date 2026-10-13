@@ -12,7 +12,7 @@ import java.util.Scanner;
  *
  * @author diogodias
  */
-public class FoodTrayStackApp {
+public class FoodStorageManagementApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         FoodStack foodStack = new FoodStack();
