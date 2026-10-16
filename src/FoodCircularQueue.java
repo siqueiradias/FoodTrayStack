@@ -11,11 +11,12 @@ public class FoodCircularQueue implements QueueADT<Food> {
 
     private static final int CAPACITY = 8;
 
-    private Food[] items;
-    private int front;
-    private int rear;
-    private int size;
+    private final Food[] items;
+    private int front; // Index of the next item to remove.
+    private int rear;  // Index of the last inserted item.
+    private int size;  // Number of stored items.
 
+    // Initialise an empty circular queue.
     public FoodCircularQueue() {
         items = new Food[CAPACITY];
         front = 0;
@@ -33,8 +34,9 @@ public class FoodCircularQueue implements QueueADT<Food> {
             System.out.println("\nQueue is full.\n");
             return;
         }
-        //capacity=8
-        //rear (7+1)%8===>0
+        // capacity=8
+        // rear (7+1)%8===>0
+        // Move rear to the next circular position.
         rear = (rear + 1) % CAPACITY;
         items[rear] = item;
         size++;
@@ -47,9 +49,10 @@ public class FoodCircularQueue implements QueueADT<Food> {
             System.out.println("\nQueue is empty!!\n");
             return null;
         }
-        //actual delete
+        // Remove the front item.
         Food removedFood = items[front];
         items[front] = null;
+        // Move front to the next circular position.
         front = (front + 1) % CAPACITY;
         size--;
         return removedFood;
@@ -82,6 +85,7 @@ public class FoodCircularQueue implements QueueADT<Food> {
         }
 
         System.out.println("\nFood queue (FRONT to REAR):");
+        // Display items from front to rear.
         for (int i = 0; i < size; i++) {
             int index = (front + i) % CAPACITY;
             System.out.println(items[index]);
@@ -103,6 +107,7 @@ public class FoodCircularQueue implements QueueADT<Food> {
         String searchName = name.trim();
         boolean found = false;
 
+        // Search items in circular order.
         for (int i = 0; i < size; i++) {
             int index = (front + i) % CAPACITY;
             if (items[index].getName().equalsIgnoreCase(searchName)) {

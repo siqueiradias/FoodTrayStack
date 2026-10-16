@@ -14,13 +14,13 @@ public class FoodStack implements StackADT<Food> {
 
     private int top;
 
-    // Constructor
+    // Initialise an empty stack.
     public FoodStack() {
         items = new Food[CAPACITY];
         top = -1;
     }
 
-    // Push element
+    // Add an item to the top.
     @Override
     public void push(Food item) {
         if (item == null) {
@@ -35,11 +35,11 @@ public class FoodStack implements StackADT<Food> {
         System.out.println("\n" + item.getName() + " pushed to stack.\n");
     }
 
-    // Pop element
+    // Remove the top item.
     @Override
     public Food pop() {
         if (isEmpty()) {
-            System.out.println("\nCannot remove food because the stack is empty\n");
+            System.out.println("\nStack is empty!!\n");
             return null;
         }
         Food removedFood = items[top];
@@ -49,11 +49,11 @@ public class FoodStack implements StackADT<Food> {
         return removedFood;
     }
 
-    // Peek top element
+    // Return the top item without removing it.
     @Override
     public Food peek() {
         if (isEmpty()) {
-            System.out.println("\nCannot peek because the stack is empty.\n");
+            System.out.println("\nStack is empty!!\n");
             return null;
         }
         return items[top];
@@ -71,11 +71,11 @@ public class FoodStack implements StackADT<Food> {
         return top == CAPACITY - 1;
     }
 
-    // Display stack
+    // Display items from top to bottom.
     @Override
     public void display() {
         if (isEmpty()) {
-            System.out.println("\nThe food stack is empty.\n");
+            System.out.println("\nStack is empty!!.\n");
             return;
         }
 
@@ -88,10 +88,12 @@ public class FoodStack implements StackADT<Food> {
     }
     
     //Get number of elements in the stack
+    @Override
     public int size(){
         return top + 1;
     }
     
+    // Search for matching food names.
     public void search(String name){
         if (name == null || name.trim().isEmpty()){
             System.out.println("\nPlease enter a valid food name.\n");

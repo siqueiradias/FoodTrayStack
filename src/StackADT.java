@@ -21,4 +21,5 @@ public interface StackADT<T> {
     
     void display();
     
+    int size();
 }

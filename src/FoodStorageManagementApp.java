@@ -53,7 +53,7 @@ public class FoodStorageManagementApp {
         boolean isRunStackMenu = true;
 
         while (isRunStackMenu) {
-            System.out.println("+ ============ Stack (LIFO) ============ +");
+            System.out.println("\n+ ============ Stack (LIFO) ============ +");
             System.out.println("+ > 1. Add food                          +");
             System.out.println("+ > 2. Remove top food                   +");
             System.out.println("+ > 3. Peek top foot                     +");
@@ -68,8 +68,8 @@ public class FoodStorageManagementApp {
 
             switch (option) {
                 case 1 -> {
-                    Food food  = createFood(scanner);
-                    
+                    Food food = createFood(scanner);
+
                     if (food != null) {
                         foodStack.push(food);
                     }
@@ -88,13 +88,18 @@ public class FoodStorageManagementApp {
                 }
                 case 4 ->
                     foodStack.display();
-                case 5 ->
-                    foodStack.search(readSearchName(scanner));
+                case 5 -> {
+                    if (foodStack.isEmpty()) {
+                        System.out.println("\nStack is empty!!\n");
+                    } else {
+                        foodStack.search(readSearchName(scanner));
+                    }
+                }
                 case 6 ->
                     System.out.println("\nStored items: " + foodStack.size() + "/8\n");
                 case 7 -> {
                     isRunStackMenu = false;
-                    System.out.println("\nExiting application.\n");
+                    System.out.println("\nReturning to main menu.\n");
                 }
                 default ->
                     System.out.println("\nInvalid option. Please choose from 1 to 7.\n");
@@ -102,8 +107,7 @@ public class FoodStorageManagementApp {
         }
     }
 
-    private static void runQueueMenu(
-            Scanner scanner, FoodCircularQueue foodQueue) {
+    private static void runQueueMenu(Scanner scanner, FoodCircularQueue foodQueue) {
 
         boolean isRunQueueMenu = true;
 
@@ -142,8 +146,13 @@ public class FoodStorageManagementApp {
                 }
                 case 4 ->
                     foodQueue.display();
-                case 5 ->
-                    foodQueue.search(readSearchName(scanner));
+                case 5 -> {
+                    if (foodQueue.isEmpty()) {
+                        System.out.println("\nQueue is empty!!\n");
+                    } else {
+                        foodQueue.search(readSearchName(scanner));
+                    }
+                }
                 case 6 ->
                     System.out.println(
                             "\nStored items: " + foodQueue.size() + "/8\n"
@@ -158,7 +167,7 @@ public class FoodStorageManagementApp {
         }
     }
 
-    //Read and validate an integer
+    //  Read and validate an integer
     private static int readInt(Scanner scanner) {
         while (true) {
             String input = scanner.nextLine().trim();
@@ -171,7 +180,7 @@ public class FoodStorageManagementApp {
         }
     }
 
-    //Read and validate an weight
+    //  Read and validate a positive weight
     private static double readPositiveDouble(Scanner scanner) {
         while (true) {
             System.out.print("Enter weight in grams: ");
@@ -194,7 +203,7 @@ public class FoodStorageManagementApp {
         }
     }
 
-    //Read and validate best-before date in yyyy-MM-dd format 
+    //  Read and validate best-before date in yyyy-MM-dd format 
     private static LocalDate readDate(Scanner scanner) {
         LocalDate today = LocalDate.now();
         LocalDate maxDate = today.plusWeeks(2);
@@ -222,7 +231,7 @@ public class FoodStorageManagementApp {
 
     }
 
-    //Add a new food item
+    //  Add a new food item
     private static Food createFood(Scanner scanner) {
         System.out.println("\n+ ========== Select food type ========== +");
         System.out.println("+ > 1. Burger                            +");
@@ -270,7 +279,7 @@ public class FoodStorageManagementApp {
         return food;
     }
 
-    //Read a food name
+    //  Read a food name to search for
     private static String readSearchName(Scanner scanner) {
         System.out.print("Enter food name to search: ");
         return scanner.nextLine();
