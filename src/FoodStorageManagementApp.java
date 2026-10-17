@@ -56,7 +56,7 @@ public class FoodStorageManagementApp {
             System.out.println("\n+ ============ Stack (LIFO) ============ +");
             System.out.println("+ > 1. Add food                          +");
             System.out.println("+ > 2. Remove top food                   +");
-            System.out.println("+ > 3. Peek top foot                     +");
+            System.out.println("+ > 3. Peek top food                     +");
             System.out.println("+ > 4. Display all food                  +");
             System.out.println("+ > 5. Search food                       +");
             System.out.println("+ > 6. Show number of stored items       +");
@@ -68,10 +68,14 @@ public class FoodStorageManagementApp {
 
             switch (option) {
                 case 1 -> {
-                    Food food = createFood(scanner);
-
-                    if (food != null) {
-                        foodStack.push(food);
+                    // Check capacity before asking for food details.
+                    if (foodStack.isFull()) {
+                        System.out.println("\nStack is full!!\n");
+                    } else {
+                        Food food = createFood(scanner);
+                        if (food != null) {
+                            foodStack.push(food);
+                        }
                     }
                 }
                 case 2 -> {
@@ -127,9 +131,14 @@ public class FoodStorageManagementApp {
 
             switch (option) {
                 case 1 -> {
-                    Food food = createFood(scanner);
-                    if (food != null) {
-                        foodQueue.enqueue(food);
+                    // Check capacity before asking for food details.
+                    if (foodQueue.isFull()) {
+                        System.out.println("\nQueue is full!!\n");
+                    } else {
+                        Food food = createFood(scanner);
+                        if (food != null) {
+                            foodQueue.enqueue(food);
+                        }
                     }
                 }
                 case 2 -> {
